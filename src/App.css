@@ -1,0 +1,150 @@
+/* Estilos base accesibles */
+body {
+  background: #f4f6fb;
+  color: #1a1a1a;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+header {
+  background: #003366;
+  color: #fff !important;
+  padding: 2em 1em 1.5em 1em;
+  text-align: center;
+}
+
+h1 {
+  color: #fff !important;
+  font-size: 2.8em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px #002244, 0 0 2px #fff;
+  margin: 0;
+}
+
+nav {
+  background: #e3e6f3;
+  padding: 1.2em 0.5em 1.2em 0.5em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+nav ul {
+  display: flex;
+  gap: 2.5em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+nav a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  outline: none;
+  border-radius: 4px;
+  padding: 0.4em 1em;
+  font-size: 1.25em;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+nav a:focus, nav a:hover {
+  background: #003366;
+  color: #ffd600;
+  outline: 2px solid #ffd600;
+}
+
+main {
+  padding: 2em;
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(26,35,126,0.08);
+}
+section {
+  margin-bottom: 2em;
+}
+h1, h2 {
+  color: #1a237e;
+  letter-spacing: 1px;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+input, textarea {
+  font-size: 1.1em;
+  padding: 0.6em;
+  border: 2px solid #b0bec5;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 1em;
+  background: #f4f6fb;
+  color: #1a1a1a;
+}
+input:focus, textarea:focus {
+  outline: 2px solid #1a237e;
+  border-color: #1a237e;
+  background: #fffde7;
+}
+button, .AccessibleButton {
+  background: #ffd600;
+  color: #1a237e;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8em 1.7em;
+  font-size: 1.15em;
+  cursor: pointer;
+  margin-top: 0.5em;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 1px 4px rgba(26,35,126,0.08);
+}
+button:focus, .AccessibleButton:focus {
+  outline: 2px solid #1a237e;
+  background: #fffde7;
+  color: #1a237e;
+}
+button:hover, .AccessibleButton:hover {
+  background: #ffe082;
+  color: #1a237e;
+}
+footer {
+  background: #1a237e;
+  color: #fff;
+  padding: 1em;
+  margin-top: 2em;
+  text-align: center;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Mejoras de contraste y visibilidad */
+::selection {
+  background: #ffd600;
+  color: #1a237e;
+}
+
+/* Eliminar estilos viejos de la plantilla */
+.App-logo, .App-header, .App-link {
+  display: none !important;
+}
+
+/* Estilos para el enlace 'Saltar al contenido' */
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #ffd600;
+  color: #1a237e;
+  padding: 0.7em 1.5em;
+  z-index: 1000;
+  transform: translateY(-120%);
+  transition: transform 0.2s;
+  font-weight: bold;
+  border-radius: 0 0 8px 0;
+  outline: none;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid #1a237e;
+}
