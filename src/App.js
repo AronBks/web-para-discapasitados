@@ -69,26 +69,41 @@ function SkipToContent() {
 }
 
 function App() {
+  const announce = useAnnouncer();
+
+  // Anunciar navegación por teclado en links
+  const navLinkAnnounce = label => () => announce(`Enlace de navegación: ${label}`);
+
+  // Anunciar foco en campos del formulario
+  const formFieldAnnounce = label => () => announce(`Campo de formulario: ${label}`);
+
+  // Anunciar envío de formulario
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    announce('Formulario enviado correctamente. Gracias por contactarnos.');
+    // Aquí podrías agregar lógica real de envío
+  };
+
   return (
     <FocusScope contain restoreFocus>
       <div className="App" style={{ fontFamily: 'sans-serif', background: '#f9f9f9', minHeight: '100vh' }}>
         <SkipToContent />
         <header style={{ background: '#003366', color: '#fff', padding: '1em' }}>
-          <h1 tabIndex={0}>Web Accesible para Discapacidad Visual</h1>
+          <h1 tabIndex={0} onFocus={() => announce('Web Accesible para Discapacidad Visual, encabezado principal.')}>Web Accesible para Discapacidad Visual</h1>
           <VisuallyHidden>
             <p>Esta web es compatible con lectores de pantalla y navegación por teclado.</p>
           </VisuallyHidden>
         </header>
         <nav aria-label="Navegación principal" style={{ background: '#e5e5e5', padding: '1em' }}>
           <ul style={{ display: 'flex', gap: '1em', listStyle: 'none', margin: 0, padding: 0 }}>
-            <li><a href="#inicio" tabIndex={0}>Inicio</a></li>
-            <li><a href="#servicios" tabIndex={0}>Servicios</a></li>
-            <li><a href="#contacto" tabIndex={0}>Contacto</a></li>
+            <li><a href="#inicio" tabIndex={0} onFocus={navLinkAnnounce('Inicio')}>Inicio</a></li>
+            <li><a href="#servicios" tabIndex={0} onFocus={navLinkAnnounce('Servicios')}>Servicios</a></li>
+            <li><a href="#contacto" tabIndex={0} onFocus={navLinkAnnounce('Contacto')}>Contacto</a></li>
           </ul>
         </nav>
         <main id="inicio" tabIndex={-1} style={{ padding: '2em', maxWidth: 700, margin: 'auto' }}>
           <section aria-labelledby="bienvenida">
-            <h2 id="bienvenida">Bienvenido</h2>
+            <h2 id="bienvenida" tabIndex={0} onFocus={() => announce('Bienvenido, sección principal.')}>Bienvenido</h2>
             <p>
               Esta aplicación está diseñada para ser totalmente accesible, cumpliendo con el nivel AA de WCAG 2.1 y mejores prácticas avanzadas. Puedes navegar usando el teclado y es compatible con lectores de pantalla.
             </p>
@@ -105,7 +120,7 @@ function App() {
             </VisuallyHidden>
           </section>
           <section id="servicios" aria-labelledby="servicios-title" style={{ marginTop: '2em' }}>
-            <h2 id="servicios-title">Servicios</h2>
+            <h2 id="servicios-title" tabIndex={0} onFocus={() => announce('Servicios, sección informativa.')}>Servicios</h2>
             <ul>
               <li>Diseño accesible y semántico</li>
               <li>Compatibilidad avanzada con lectores de pantalla</li>
@@ -115,14 +130,14 @@ function App() {
             </ul>
           </section>
           <section id="contacto" aria-labelledby="contacto-title" style={{ marginTop: '2em' }}>
-            <h2 id="contacto-title">Contacto</h2>
-            <form aria-label="Formulario de contacto" style={{ display: 'flex', flexDirection: 'column', gap: '1em', maxWidth: 400 }}>
+            <h2 id="contacto-title" tabIndex={0} onFocus={() => announce('Contacto, sección de formulario.')}>Contacto</h2>
+            <form aria-label="Formulario de contacto" style={{ display: 'flex', flexDirection: 'column', gap: '1em', maxWidth: 400 }} onSubmit={handleFormSubmit}>
               <label htmlFor="nombre">Nombre</label>
-              <input id="nombre" name="nombre" type="text" required aria-required="true" autoComplete="name" />
+              <input id="nombre" name="nombre" type="text" required aria-required="true" autoComplete="name" onFocus={formFieldAnnounce('Nombre')} />
               <label htmlFor="email">Correo electrónico</label>
-              <input id="email" name="email" type="email" required aria-required="true" autoComplete="email" />
+              <input id="email" name="email" type="email" required aria-required="true" autoComplete="email" onFocus={formFieldAnnounce('Correo electrónico')} />
               <label htmlFor="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" rows={4} required aria-required="true" />
+              <textarea id="mensaje" name="mensaje" rows={4} required aria-required="true" onFocus={formFieldAnnounce('Mensaje')} />
               <AccessibleButton type="submit" aria-label="Enviar mensaje de contacto">Enviar</AccessibleButton>
             </form>
             <VisuallyHidden>
